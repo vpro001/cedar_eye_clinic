@@ -17,6 +17,7 @@ $page_title       = 'Cedar Eye Clinic: eye tests and glasses in GRA Phase 3, Por
 $page_description = 'Optometrists inside ' . setting('building') . ' on ' . setting('street') . ', Port Harcourt. Eye examinations, glaucoma screening, children\'s eye tests, HMO eye care and an optical shop.';
 $canonical        = '';
 $home             = true;
+$wizard           = true;
 include __DIR__ . '/includes/header.php';
 
 $chart = [['E', '6/60'], ['F P', '6/36'], ['T O Z', '6/24'], ['L P E D', '6/18'], ['P E C F D', '6/12'], ['E D F C Z P', '6/9'], ['F E L O P Z D', '6/6']];
@@ -203,21 +204,25 @@ $tiles = [
 </section>
 
 <section class="section section--band" id="book" aria-labelledby="book-h">
-  <div class="wrap split">
-    <div class="stack-lg">
+  <div class="wrap book-layout">
+    <div class="book-layout__head">
       <div class="section-head">
         <h2 id="book-h">Book an eye test</h2>
-        <p>Choose a day and a time of day. We call you on the number you give to confirm the exact time.</p>
+        <p>Three short steps: what you need, when suits you, and how to reach you. We call you to confirm the exact time.</p>
       </div>
+    </div>
+    <div class="book-layout__info stack-lg">
       <?= hours_dl() ?>
       <div class="contact-lines">
         <a href="<?= e(phone_href()) ?>"><span>Book by phone</span><span class="mono"><?= e(phone_display()) ?></span></a>
         <a href="<?= e(wa_link('Hello Cedar Eye Clinic, I would like to book an eye test.')) ?>" rel="noopener" target="_blank"><span>Book on WhatsApp</span><span class="mono">&rarr;</span></a>
       </div>
     </div>
-    <div class="slip">
-      <div class="slip__head"><span class="rx" aria-hidden="true">Rx</span><span class="label">Booking request</span></div>
-      <div class="slip__body"><?= booking_form($state, true) ?></div>
+    <div class="book-layout__form">
+      <div class="slip">
+        <div class="slip__head"><span class="rx" aria-hidden="true">Rx</span><span class="label">Booking request</span></div>
+        <div class="slip__body"><?= booking_wizard($state) ?></div>
+      </div>
     </div>
   </div>
 </section>
